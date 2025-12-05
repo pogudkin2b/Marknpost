@@ -3,7 +3,15 @@
 import { useState, useEffect } from 'react';
 
 // FAQ Accordion Item
-const FAQItem = ({ question, answer, isOpen, onClick, index }) => (
+interface FAQItemProps {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onClick: () => void;
+  index: number;
+}
+
+const FAQItem = ({ question, answer, isOpen, onClick, index }: FAQItemProps) => (
   <div className="border-b-2 border-stone-900 last:border-0">
     <button
       onClick={onClick}
@@ -28,7 +36,15 @@ const FAQItem = ({ question, answer, isOpen, onClick, index }) => (
 );
 
 // Service Card with geometric accent
-const ServiceCard = ({ icon, title, subtitle, description, index }) => (
+interface ServiceCardProps {
+  icon: React.ReactNode;
+  title: string;
+  subtitle?: string;
+  description: string;
+  index: number;
+}
+
+const ServiceCard = ({ icon, title, subtitle, description, index }: ServiceCardProps) => (
   <div className="group relative bg-white border-2 border-stone-200 hover:border-stone-900 transition-all duration-300 p-8 overflow-hidden">
     {/* Geometric corner accent */}
     <div className="absolute top-0 right-0 w-16 h-16 bg-amber-400 transform translate-x-8 -translate-y-8 rotate-45 group-hover:translate-x-4 group-hover:-translate-y-4 transition-transform duration-500" />
@@ -53,7 +69,12 @@ const ServiceCard = ({ icon, title, subtitle, description, index }) => (
 );
 
 // Marquee component for dynamic feel
-const Marquee = ({ children, reverse = false }) => (
+interface MarqueeProps {
+  children: React.ReactNode;
+  reverse?: boolean;
+}
+
+const Marquee = ({ children, reverse = false }: MarqueeProps) => (
   <div className="overflow-hidden whitespace-nowrap">
     <div className={`inline-flex ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'}`}>
       {children}
@@ -63,7 +84,7 @@ const Marquee = ({ children, reverse = false }) => (
 );
 
 export default function MarknPostLanding() {
-  const [openFAQ, setOpenFAQ] = useState(null);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
